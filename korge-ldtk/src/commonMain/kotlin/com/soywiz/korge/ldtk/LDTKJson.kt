@@ -3,7 +3,7 @@
 // val json = Json(JsonConfiguration.Stable)
 // val ldtk = json.parse(Ldtk.serializer(), jsonString)
 
-package com.soywiz.korge.tiled.ldtk
+package com.soywiz.korge.ldtk
 
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
@@ -520,7 +520,7 @@ enum class AllowedRefs(val value: String) {
 
     companion object : KSerializer<AllowedRefs> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.AllowedRefs", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.AllowedRefs", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): AllowedRefs = when (val value = decoder.decodeString()) {
             "Any"      -> AllowedRefsAny
@@ -559,7 +559,7 @@ enum class EditorDisplayMode(val value: String) {
 
     companion object : KSerializer<EditorDisplayMode> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.EditorDisplayMode", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.EditorDisplayMode", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): EditorDisplayMode = when (val value = decoder.decodeString()) {
             "ArrayCountNoLabel"     -> ArrayCountNoLabel
@@ -595,7 +595,7 @@ enum class EditorDisplayPos(val value: String) {
 
     companion object : KSerializer<EditorDisplayPos> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.EditorDisplayPos", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.EditorDisplayPos", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): EditorDisplayPos = when (val value = decoder.decodeString()) {
             "Above"   -> Above
@@ -624,7 +624,7 @@ enum class TextLanguageMode(val value: String) {
 
     companion object : KSerializer<TextLanguageMode> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.TextLanguageMode", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.TextLanguageMode", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): TextLanguageMode = when (val value = decoder.decodeString()) {
             "LangC"        -> LangC
@@ -656,7 +656,7 @@ enum class LimitBehavior(val value: String) {
 
     companion object : KSerializer<LimitBehavior> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.LimitBehavior", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.LimitBehavior", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): LimitBehavior = when (val value = decoder.decodeString()) {
             "DiscardOldOnes" -> DiscardOldOnes
@@ -682,7 +682,7 @@ enum class LimitScope(val value: String) {
 
     companion object : KSerializer<LimitScope> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.LimitScope", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.LimitScope", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): LimitScope = when (val value = decoder.decodeString()) {
             "PerLayer" -> PerLayer
@@ -708,7 +708,7 @@ enum class RenderMode(val value: String) {
 
     companion object : KSerializer<RenderMode> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.RenderMode", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.RenderMode", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): RenderMode = when (val value = decoder.decodeString()) {
             "Cross"     -> Cross
@@ -771,7 +771,7 @@ enum class TileRenderMode(val value: String) {
 
     companion object : KSerializer<TileRenderMode> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.TileRenderMode", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.TileRenderMode", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): TileRenderMode = when (val value = decoder.decodeString()) {
             "Cover"             -> Cover
@@ -1116,7 +1116,7 @@ enum class Checker(val value: String) {
 
     companion object : KSerializer<Checker> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.Checker", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.Checker", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): Checker = when (val value = decoder.decodeString()) {
             "Horizontal" -> Horizontal
@@ -1140,7 +1140,7 @@ enum class TileMode(val value: String) {
 
     companion object : KSerializer<TileMode> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.TileMode", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.TileMode", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): TileMode = when (val value = decoder.decodeString()) {
             "Single" -> Single
@@ -1184,7 +1184,7 @@ enum class Type(val value: String) {
 
     companion object : KSerializer<Type> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.Type", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.Type", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): Type = when (val value = decoder.decodeString()) {
             "AutoLayer" -> AutoLayer
@@ -1312,7 +1312,7 @@ enum class EmbedAtlas(val value: String) {
 
     companion object : KSerializer<EmbedAtlas> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.EmbedAtlas", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.EmbedAtlas", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): EmbedAtlas = when (val value = decoder.decodeString()) {
             "LdtkIcons" -> LdtkIcons
@@ -1347,7 +1347,7 @@ enum class Flag(val value: String) {
 
     companion object : KSerializer<Flag> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.Flag", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.Flag", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): Flag = when (val value = decoder.decodeString()) {
             "DiscardPreCsvIntGrid"         -> DiscardPreCSVIntGrid
@@ -1968,7 +1968,7 @@ enum class BgPos(val value: String) {
 
     companion object : KSerializer<BgPos> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.BgPos", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.BgPos", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): BgPos = when (val value = decoder.decodeString()) {
             "Contain"    -> Contain
@@ -2060,7 +2060,7 @@ enum class WorldLayout(val value: String) {
 
     companion object : KSerializer<WorldLayout> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.WorldLayout", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.WorldLayout", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): WorldLayout = when (val value = decoder.decodeString()) {
             "Free"             -> Free
@@ -2088,7 +2088,7 @@ enum class IdentifierStyle(val value: String) {
 
     companion object : KSerializer<IdentifierStyle> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.IdentifierStyle", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.IdentifierStyle", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): IdentifierStyle = when (val value = decoder.decodeString()) {
             "Capitalize" -> Capitalize
@@ -2116,7 +2116,7 @@ enum class ImageExportMode(val value: String) {
 
     companion object : KSerializer<ImageExportMode> {
         override val descriptor: SerialDescriptor get() {
-            return PrimitiveSerialDescriptor("com.soywiz.korge.tiled.ldtk.ImageExportMode", PrimitiveKind.STRING)
+            return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.ImageExportMode", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): ImageExportMode = when (val value = decoder.decodeString()) {
             "LayersAndLevels"  -> LayersAndLevels
