@@ -4,6 +4,6 @@ plugins {
   id("org.jetbrains.kotlin.plugin.serialization")
 }
 dependencies {
-  add("commonMainApi", "com.soywiz.korlibs.korge2:korge:3.2.0")
+  add("commonMainApi", "com.soywiz.korlibs.korge2:korge:3.3.0")
   add("commonMainApi", "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
 }
