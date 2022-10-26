@@ -1,4 +1,6 @@
 #name: deps
 dependencies:
-  - ../korge-ldtk
+  - git::korge-ldtk::korlibs/korge-ldtk::/korge-ldtk::2d1b8299636cffca851e05aec446dc99120dfd1b
+  #- git::korge-ldtk::korlibs/korge-ldtk::/korge-ldtk::v0.0.1
+  #- ../korge-ldtk
 
