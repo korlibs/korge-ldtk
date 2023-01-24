@@ -2,5 +2,5 @@ name: "korge-ldtk"
 plugins:
   - serialization
 dependencies:
-  - "maven::common::com.soywiz.korlibs.korge2:korge:3.3.0"
+  - "maven::common::com.soywiz.korlibs.korge2:korge"
 

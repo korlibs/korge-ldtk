@@ -3,3 +3,8 @@
 /build
 /deps
 /modules
+/korge.keystore
+/kotlin-js-store
+/src/main
+/local.properties
+

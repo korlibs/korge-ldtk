@@ -1,12 +1,12 @@
 import com.soywiz.korge.gradle.*
 
 plugins {
-        //alias(libs.plugins.korge)
-    id("com.soywiz.korge") version "3.3.0"
+    //alias(libs.plugins.korge)
+    id("com.soywiz.korge") version "4.0.0-alpha-2"
 }
 
 korge {
-    id = "com.sample.demoldtk"
+    id = "org.korge.samples.demoldtk"
 
 // To enable all targets at once
 
@@ -19,12 +19,11 @@ korge {
 
     targetJvm()
     targetJs()
-    //targetDesktop()
-    //targetDesktopCross()
-    //targetIos()
-    //targetAndroidIndirect() // targetAndroidDirect()
+    targetDesktop()
+    targetDesktopCross()
+    targetIos()
+    targetAndroidDirect()
     serializationJson()
-    //targetAndroidDirect()
 }
 
 dependencies {
