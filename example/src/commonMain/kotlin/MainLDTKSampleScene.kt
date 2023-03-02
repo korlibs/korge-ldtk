@@ -17,14 +17,13 @@ import com.soywiz.korio.file.std.*
 import com.soywiz.korma.geom.*
 
 abstract class PixelatedScene(
-    sceneWidth: Int,
-    sceneHeight: Int,
+    sceneSize: SizeInt,
     sceneScaleMode: ScaleMode = ScaleMode.SHOW_ALL,
     sceneAnchor: Anchor = Anchor.CENTER,
     sceneSmoothing: Boolean = false,
-) : ScaledScene(sceneWidth, sceneHeight, sceneScaleMode, sceneAnchor, sceneSmoothing = sceneSmoothing)
+) : ScaledScene(sceneSize.width, sceneSize.height, sceneScaleMode, sceneAnchor, sceneSmoothing = sceneSmoothing)
 
-class MainLDTKSampleScene : PixelatedScene(1280, 720, sceneScaleMode = ScaleMode.NO_SCALE, sceneSmoothing = true) {
+class MainLDTKSampleScene : PixelatedScene(SizeInt(1280, 720), sceneScaleMode = ScaleMode.NO_SCALE, sceneSmoothing = true) {
     override suspend fun SContainer.sceneMain() {
         onMagnify { println("magnify: ${it.amount}") }
         onRotate { println("rotate: ${it.amount}") }
