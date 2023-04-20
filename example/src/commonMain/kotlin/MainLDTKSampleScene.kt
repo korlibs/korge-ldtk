@@ -1,20 +1,28 @@
-import com.soywiz.kds.*
-import com.soywiz.klock.*
-import com.soywiz.kmem.*
-import com.soywiz.korge.input.*
-import com.soywiz.korge.ldtk.*
-import com.soywiz.korge.scene.*
-import com.soywiz.korge.tween.*
-import com.soywiz.korge.view.*
-import com.soywiz.korge.view.filter.*
-import com.soywiz.korge.view.tiles.*
-import com.soywiz.korim.bitmap.*
-import com.soywiz.korim.color.*
-import com.soywiz.korim.format.*
-import com.soywiz.korim.tiles.*
-import com.soywiz.korim.tiles.TileSet
-import com.soywiz.korio.file.std.*
-import com.soywiz.korma.geom.*
+import korlibs.datastructure.IntArray2
+import korlibs.datastructure.StackedIntArray2
+import korlibs.image.bitmap.slice
+import korlibs.image.color.Colors
+import korlibs.image.format.readBitmap
+import korlibs.image.tiles.TileSet
+import korlibs.io.file.std.resourcesVfs
+import korlibs.korge.input.onMagnify
+import korlibs.korge.input.onRotate
+import korlibs.korge.ldtk.LDTKJson
+import korlibs.korge.ldtk.TilesetDefinition
+import korlibs.korge.scene.ScaledScene
+import korlibs.korge.tween.get
+import korlibs.korge.tween.tween
+import korlibs.korge.view.*
+import korlibs.korge.view.filter.IdentityFilter
+import korlibs.korge.view.filter.filters
+import korlibs.korge.view.tiles.TileInfo
+import korlibs.korge.view.tiles.tileMap
+import korlibs.math.geom.Anchor
+import korlibs.math.geom.ScaleMode
+import korlibs.math.geom.SizeInt
+import korlibs.memory.hasBitSet
+import korlibs.time.measureTime
+import korlibs.time.seconds
 
 abstract class PixelatedScene(
     sceneSize: SizeInt,
@@ -88,8 +96,8 @@ class MainLDTKSampleScene : PixelatedScene(SizeInt(1280, 720), sceneScaleMode = 
             //}.xy(300, 300)
         }.filters(IdentityFilter.Linear).xy(300, 300)
         while (true) {
-            tween(container::scale[0.5], time = 1.seconds)
-            tween(container::scale[1.25], time = 1.seconds)
+            tween(container::scaleAvg[0.5], time = 1.seconds)
+            tween(container::scaleAvg[1.25], time = 1.seconds)
         }
     }
 }

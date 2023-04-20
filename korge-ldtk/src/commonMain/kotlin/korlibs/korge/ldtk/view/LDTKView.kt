@@ -1,15 +1,15 @@
-package com.soywiz.korge.ldtk.view
+package korlibs.korge.ldtk.view
 
-import com.soywiz.kds.*
-import com.soywiz.kmem.*
-import com.soywiz.korge.ldtk.*
-import com.soywiz.korge.view.*
-import com.soywiz.korge.view.tiles.*
-import com.soywiz.korim.bitmap.*
-import com.soywiz.korim.color.*
-import com.soywiz.korim.format.*
-import com.soywiz.korim.tiles.*
-import com.soywiz.korio.file.*
+import korlibs.datastructure.*
+import korlibs.memory.*
+import korlibs.korge.ldtk.*
+import korlibs.korge.view.*
+import korlibs.korge.view.tiles.*
+import korlibs.image.bitmap.*
+import korlibs.image.color.*
+import korlibs.image.format.*
+import korlibs.image.tiles.*
+import korlibs.io.file.*
 
 class LDTKView(
     val world: LDTKWorld

@@ -3,7 +3,7 @@
 // val json = Json(JsonConfiguration.Stable)
 // val ldtk = json.parse(Ldtk.serializer(), jsonString)
 
-package com.soywiz.korge.ldtk
+package korlibs.korge.ldtk
 
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
