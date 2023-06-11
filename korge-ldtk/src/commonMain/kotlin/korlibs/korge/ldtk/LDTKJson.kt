@@ -5,6 +5,7 @@
 
 package korlibs.korge.ldtk
 
+import korlibs.datastructure.Extra
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
 import kotlinx.serialization.descriptors.*
@@ -253,7 +254,7 @@ data class Definitions (
      * All tilesets
      */
     val tilesets: List<TilesetDefinition>
-)
+) : Extra by Extra.Mixin()
 
 @Serializable
 data class EntityDefinition (
@@ -376,7 +377,7 @@ data class EntityDefinition (
      * Pixel width
      */
     val width: Int
-)
+) : Extra by Extra.Mixin()
 
 /**
  * This section is mostly only intended for the LDtk editor app itself. You can safely
