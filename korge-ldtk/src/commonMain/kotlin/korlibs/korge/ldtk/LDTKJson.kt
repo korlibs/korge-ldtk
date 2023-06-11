@@ -514,7 +514,7 @@ data class FieldDefinition (
  */
 @Serializable
 enum class AllowedRefs(val value: String) {
-    AllowedRefsAny("Any"),
+    Any("Any"),
     OnlySame("OnlySame"),
     OnlyTags("OnlyTags");
 
@@ -523,7 +523,7 @@ enum class AllowedRefs(val value: String) {
             return PrimitiveSerialDescriptor("com.soywiz.korge.ldtk.AllowedRefs", PrimitiveKind.STRING)
         }
         override fun deserialize(decoder: Decoder): AllowedRefs = when (val value = decoder.decodeString()) {
-            "Any"      -> AllowedRefsAny
+            "Any"      -> Any
             "OnlySame" -> OnlySame
             "OnlyTags" -> OnlyTags
             else       -> throw IllegalArgumentException("AllowedRefs could not parse: $value")
