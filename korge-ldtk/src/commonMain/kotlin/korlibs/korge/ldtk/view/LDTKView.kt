@@ -65,10 +65,10 @@ class LDTKEntityView(
 
     val anchor = entity.pivotAnchor
     val gridSize = llayer.layer.gridSize.toFloat()
-    val tile = entity.tile
+    val tile: TilesetRectangle? = entity.tile
+    val tileset = llayer.world.tilesetDefsById[tile?.tilesetUid]
+    val utileset = tileset?.unextrudedTileSet
     var view: View = if (tile != null) {
-        val tileset = llayer.world.tilesetDefsById[tile.tilesetUid]
-        val utileset = tileset?.unextrudedTileSet
         image(tileset!!.unextrudedTileSet!!.base.sliceWithSize(tile.x, tile.y, tile.w, tile.h)).also { it.smoothing = false }
     } else {
         solidRect(entity.width, entity.height, Colors[entity.smartColor, Colors.FUCHSIA])
@@ -100,9 +100,10 @@ class LDTKLayerView(
     val layerDef = world.layersDefsById[layer.layerDefUid]
     val tilesetExt = world.tilesetDefsById[layer.tilesetDefUid]
 
+    val intGrid = IntArray2(layer.cWid, layer.cHei, layer.intGridCSV.copyOf(layer.cWid * layer.cHei))
+    val tileData = StackedIntArray2(layer.cWid, layer.cHei, -1)
+
     fun addTiles() {
-        val intGrid = IntArray2(layer.cWid, layer.cHei, layer.intGridCSV.copyOf(layer.cWid * layer.cHei))
-        val tileData = StackedIntArray2(layer.cWid, layer.cHei, -1)
         if (tilesetExt != null && layerDef != null) {
             val tileset = tilesetExt.def
             val gridSize = tileset.tileGridSize
@@ -192,6 +193,7 @@ class LDTKLayer(val level: LDTKLevel, val layer: LayerInstance) {
 class LDTKLevel(val world: LDTKWorld, val level: Level) {
     val ldtk get() = world.ldtk
     val layers by lazy { level.layerInstances?.map { LDTKLayer(this, it) } ?: emptyList() }
+    val layersByName by lazy { layers.associateBy { it.layer.identifier } }
 }
 
 class LDTKWorld(

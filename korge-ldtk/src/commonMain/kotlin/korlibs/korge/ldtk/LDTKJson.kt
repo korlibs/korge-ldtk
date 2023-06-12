@@ -1476,7 +1476,7 @@ data class EntityInstance (
      * Array of tags defined in this Entity definition
      */
     @SerialName("__tags")
-    val tags: List<String>,
+    val tags: Set<String>,
 
     /**
      * Optional TilesetRect used to display this entity (it could either be the default Entity
@@ -1517,7 +1517,7 @@ data class EntityInstance (
      * definition.
      */
     val width: Int
-)
+) : Extra by Extra.Mixin()
 
 @Serializable
 data class FieldInstance (
