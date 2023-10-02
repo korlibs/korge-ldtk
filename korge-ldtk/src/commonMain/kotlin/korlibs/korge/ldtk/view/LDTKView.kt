@@ -19,8 +19,8 @@ private fun IStackedIntArray2.getFirst(pos: PointInt): Int = getFirst(pos.x, pos
 private fun IStackedIntArray2.getLast(pos: PointInt): Int = getLast(pos.x, pos.y)
 
 class LDTKCollisions(val world: LDTKWorld, val stack: IStackedIntArray2) {
-    fun tileToPixel(tilePos: PointInt): PointInt = (tilePos.toFloat() * world.ldtk.defaultGridSize).toIntFloor()
-    fun pixelToTile(pixelPos: PointInt): PointInt = (pixelPos.toFloat() / world.ldtk.defaultGridSize).toIntFloor()
+    fun tileToPixel(tilePos: PointInt): PointInt = (tilePos.toDouble() * world.ldtk.defaultGridSize).toIntFloor()
+    fun pixelToTile(pixelPos: PointInt): PointInt = (pixelPos.toDouble() / world.ldtk.defaultGridSize).toIntFloor()
 
     fun getTile(tilePos: PointInt): Int = stack.getLast(tilePos)
     fun getPixel(pixelPos: PointInt): Int = getTile(pixelToTile(pixelPos))
@@ -64,7 +64,7 @@ class LDTKEntityView(
     }
 
     val anchor = entity.pivotAnchor
-    val gridSize = llayer.layer.gridSize.toFloat()
+    val gridSize = llayer.layer.gridSize.toDouble()
     val tile: TilesetRectangle? = entity.tile
     val tileset = llayer.world.tilesetDefsById[tile?.tilesetUid]
     val utileset = tileset?.unextrudedTileSet
@@ -79,7 +79,7 @@ class LDTKEntityView(
         //view.anchor(anchor)
     }
     init {
-        val pos = entity.gridPos.toFloat() * gridSize + anchor.toVector() * gridSize
+        val pos = entity.gridPos.toDouble() * gridSize + anchor.toVector() * gridSize
         view
             .size(entity.width, entity.height)
         (view as? Anchorable)?.anchor(anchor)
