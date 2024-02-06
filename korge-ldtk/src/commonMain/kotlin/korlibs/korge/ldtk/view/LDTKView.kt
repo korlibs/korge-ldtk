@@ -163,7 +163,7 @@ class LDTKLevelView(
     private val _layerViews = arrayListOf<View>()
     private val _layerViewsByName = linkedHashMapOf<String, View>()
 
-    val bgLayer = solidRect(blevel.pxWid, blevel.pxHei, Colors[blevel.levelBgColor ?: ldtk.bgColor]).also {
+    val bgLayer = solidRect(blevel.pxWid, blevel.pxHei, Colors[blevel.levelBgColor ?: ldtk.defaultLevelBgColor]).also {
         it.name = "background"
     }
     val layerViews = level.layers.asReversed().map { layer -> LDTKLayerView(layer, showCollisions).addTo(this) }
