@@ -154,7 +154,8 @@ class LDTKLayerView(
 
 class LDTKLevelView(
     val level: LDTKLevel,
-    var showCollisions: Boolean = false
+    private var showCollisions: Boolean = false,
+    private var showBackground: Boolean = true
 ) : Container() {
     private val ldtk get() = level.ldtk
     private val world get() = level.world
@@ -165,6 +166,7 @@ class LDTKLevelView(
 
     val bgLayer = solidRect(blevel.pxWid, blevel.pxHei, Colors[blevel.levelBgColor ?: ldtk.defaultLevelBgColor]).also {
         it.name = "background"
+        it.visible = showBackground
     }
     val layerViews = level.layers.asReversed().map { layer -> LDTKLayerView(layer, showCollisions).addTo(this) }
     val layerViewsByName = layerViews.associateBy { it.layer.identifier }
@@ -172,11 +174,12 @@ class LDTKLevelView(
 
 class LDTKWorldView(
     val world: LDTKWorld,
-    var showCollisions: Boolean = false
+    showCollisions: Boolean = false,
+    showBackground: Boolean = true
 ) : Container() {
     init {
         for (level in world.levels) {
-            LDTKLevelView(level, showCollisions)
+            LDTKLevelView(level, showCollisions, showBackground)
                 .addTo(this)
                 .xy(level.level.worldX, level.level.worldY)
         }
