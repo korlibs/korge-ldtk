@@ -13,6 +13,7 @@ import korlibs.io.file.*
 import korlibs.korge.view.filter.IdentityFilter
 import korlibs.korge.view.filter.filters
 import korlibs.math.geom.*
+import korlibs.math.geom.slice.*
 
 
 private fun IStackedIntArray2.getFirst(pos: PointInt): Int = getFirst(pos.x, pos.y)
@@ -125,9 +126,9 @@ class LDTKLayerView(
                 val tileId = ty * cellsTilesPerRow + tx
                 val flipX = tile.f.hasBitSet(0)
                 val flipY = tile.f.hasBitSet(1)
-                tileData.push(x, y, TileInfo(tileId, flipX = flipX, flipY = flipY, offsetX = dx, offsetY = dy).data)
+                tileData.push(x, y, Tile(tile = tileId, offsetX = dx, offsetY = dy, flipX = flipX, flipY = flipY, rotate = false).raw.toInt())  // was: TileInfo(tileId, flipX = flipX, flipY = flipY, offsetX = dx, offsetY = dy).data)
             }
-            if (tilesetExt.tileset != null) {
+/*            if (tilesetExt.tileset != null) {
                 tileMap(tileData, tilesetExt.tileset!!, smoothing = false)
                     .alpha(layerDef.displayOpacity)
                     .also { if (!world.tilesetIsExtruded) it.filters(IdentityFilter.Nearest) }
@@ -137,6 +138,7 @@ class LDTKLayerView(
                     .also { if (!world.tilesetIsExtruded) it.filters(IdentityFilter.Nearest) }
                     .also { it.overdrawTiles = 1 }
             }
+*/
             //tileset!!.
             //println(intGrid)
         }
