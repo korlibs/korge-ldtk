@@ -13,7 +13,6 @@ import korlibs.io.file.*
 import korlibs.korge.view.filter.IdentityFilter
 import korlibs.korge.view.filter.filters
 import korlibs.math.geom.*
-import korlibs.math.geom.slice.*
 
 
 private fun IStackedIntArray2.getFirst(pos: PointInt): Int = getFirst(pos.x, pos.y)
