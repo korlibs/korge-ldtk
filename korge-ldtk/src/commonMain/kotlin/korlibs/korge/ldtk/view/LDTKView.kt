@@ -90,6 +90,9 @@ class LDTKEntityView(
 
 }
 
+/**
+ * A view that represents a layer of a LDTK level map.
+ */
 class LDTKLayerView(
     val llayer: LDTKLayer,
     var showCollisions: Boolean = false
@@ -100,9 +103,16 @@ class LDTKLayerView(
     val layerDef = world.layersDefsById[layer.layerDefUid]
     val tilesetExt = world.tilesetDefsById[layer.tilesetDefUid]
 
-    val intGrid = IntArray2(layer.cWid, layer.cHei, layer.intGridCSV.copyOf(layer.cWid * layer.cHei))
-    val tileData = StackedIntArray2(layer.cWid, layer.cHei, -1)
+    val intGrid = TileMapData(width = layer.cWid, height = layer.cHei, tileSet = world.intsTileSet)
+    val tileData = TileMapData(
+        width = layer.cWid,
+        height = layer.cHei,
+        tileSet = if(tilesetExt?.tileset != null) tilesetExt.tileset else TileSet.EMPTY
+    )
 
+    /**
+     * Function to add all tiles from the layer to the tileMap view.
+     */
     fun addTiles() {
         if (tilesetExt != null && layerDef != null) {
             val tileset = tilesetExt.def
@@ -125,14 +135,14 @@ class LDTKLayerView(
                 val tileId = ty * cellsTilesPerRow + tx
                 val flipX = tile.f.hasBitSet(0)
                 val flipY = tile.f.hasBitSet(1)
-                tileData.push(x, y, TileInfo(tileId, flipX = flipX, flipY = flipY, offsetX = dx, offsetY = dy).data)
+                tileData.push(x, y, Tile(tile = tileId, offsetX = dx, offsetY = dy, flipX = flipX, flipY = flipY, rotate = false))
             }
             if (tilesetExt.tileset != null) {
-                tileMap(tileData, tilesetExt.tileset!!, smoothing = false)
+                 tileMap(tileData, smoothing = false)
                     .alpha(layerDef.displayOpacity)
                     .also { if (!world.tilesetIsExtruded) it.filters(IdentityFilter.Nearest) }
                     .also { it.overdrawTiles = 1 }
-                tileMap(intGrid, world.intsTileSet, smoothing = false)
+                tileMap(intGrid, smoothing = false)
                     .visible(showCollisions)
                     .also { if (!world.tilesetIsExtruded) it.filters(IdentityFilter.Nearest) }
                     .also { it.overdrawTiles = 1 }

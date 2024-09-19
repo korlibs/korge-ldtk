@@ -3,7 +3,7 @@ import korlibs.datastructure.StackedIntArray2
 import korlibs.image.bitmap.slice
 import korlibs.image.color.Colors
 import korlibs.image.format.readBitmap
-import korlibs.image.tiles.TileSet
+import korlibs.image.tiles.*
 import korlibs.io.file.std.resourcesVfs
 import korlibs.korge.input.onMagnify
 import korlibs.korge.input.onRotate
@@ -15,7 +15,6 @@ import korlibs.korge.tween.tween
 import korlibs.korge.view.*
 import korlibs.korge.view.filter.IdentityFilter
 import korlibs.korge.view.filter.filters
-import korlibs.korge.view.tiles.TileInfo
 import korlibs.korge.view.tiles.tileMap
 import korlibs.math.geom.Anchor
 import korlibs.math.geom.ScaleMode
@@ -61,30 +60,32 @@ class MainLDTKSampleScene : PixelatedScene(SizeInt(1280, 720), sceneScaleMode = 
                         val layerDef = layersDefsById[layer.layerDefUid] ?: continue
                         val tilesetExt = tilesetDefsById[layer.tilesetDefUid] ?: continue
                         val intGrid = IntArray2(layer.cWid, layer.cHei, layer.intGridCSV.copyOf(layer.cWid * layer.cHei))
-                        val tileData = StackedIntArray2(layer.cWid, layer.cHei, -1)
                         val tileset = tilesetExt.def
                         val gridSize = tileset.tileGridSize
 
                         //val fsprites = FSprites(layer.autoLayerTiles.size)
                         //val view = fsprites.createView(bitmap).also { it.scale(2) }
                         //addChild(view)
-                        for (tile in layer.autoLayerTiles) {
-                            val (px, py) = tile.px
-                            val (tileX, tileY) = tile.src
-                            val x = px / gridSize
-                            val y = py / gridSize
-                            val dx = px % gridSize
-                            val dy = py % gridSize
-                            val tx = tileX / gridSize
-                            val ty = tileY / gridSize
-                            val cellsTilesPerRow = tileset.pxWid / gridSize
-                            val tileId = ty * cellsTilesPerRow + tx
-                            val flipX = tile.f.hasBitSet(0)
-                            val flipY = tile.f.hasBitSet(1)
-                            tileData.push(x, y, TileInfo(tileId, flipX = flipX, flipY = flipY, offsetX = dx, offsetY = dy).data)
-                        }
                         if (tilesetExt.tileset != null) {
-                            tileMap(tileData, tilesetExt.tileset).alpha(layerDef.displayOpacity)
+                            val tileData = TileMapData(width = layer.cWid, height = layer.cHei, tileSet = tilesetExt.tileset)
+
+                            for (tile in layer.autoLayerTiles) {
+                                val (px, py) = tile.px
+                                val (tileX, tileY) = tile.src
+                                val x = px / gridSize
+                                val y = py / gridSize
+                                val dx = px % gridSize
+                                val dy = py % gridSize
+                                val tx = tileX / gridSize
+                                val ty = tileY / gridSize
+                                val cellsTilesPerRow = tileset.pxWid / gridSize
+                                val tileId = ty * cellsTilesPerRow + tx
+                                val flipX = tile.f.hasBitSet(0)
+                                val flipY = tile.f.hasBitSet(1)
+                                tileData.push(x, y, Tile(tileId, flipX = flipX, flipY = flipY, offsetX = dx, offsetY = dy, rotate = false))
+                            }
+
+                            tileMap(tileData).alpha(layerDef.displayOpacity)
                         }
                         //tileset!!.
                         //println(intGrid)
