@@ -862,7 +862,7 @@ data class LayerDefinition (
     /**
      * Contains all the auto-layer rule definitions.
      */
-    val autoRuleGroups: List<AutoLayerRuleGroup>,
+//    val autoRuleGroups: List<AutoLayerRuleGroup>,
 
     val autoSourceLayerDefUid: Int? = null,
 
@@ -1072,7 +1072,7 @@ data class AutoLayerRuleDefinition (
     /**
      * Array of all the tile IDs. They are used randomly or as stamps, based on `tileMode` value.
      */
-    @SerialName("tileIds")
+    @SerialName("tileRectsIds")
     val tileIDS: IntArray,
 
     /**
