@@ -1072,8 +1072,8 @@ data class AutoLayerRuleDefinition (
     /**
      * Array of all the tile IDs. They are used randomly or as stamps, based on `tileMode` value.
      */
-    @SerialName("tileIds")
-    val tileIDS: IntArray,
+    @SerialName("tileRectsIds")
+    val tileIDS: List<IntArray>,
 
     /**
      * Defines how tileIds array is used Possible values: `Single`, `Stamp`
