@@ -103,7 +103,8 @@ class LDTKLayerView(
     val layerDef = world.layersDefsById[layer.layerDefUid]
     val tilesetExt = world.tilesetDefsById[layer.tilesetDefUid]
 
-    val intGrid = TileMapData(width = layer.cWid, height = layer.cHei, tileSet = world.intsTileSet)
+    val intGridInt = IntArray2(layer.cWid, layer.cHei, layer.intGridCSV.copyOf(layer.cWid * layer.cHei))
+    val intGrid = TileMapData(intGridInt, tileSet = world.intsTileSet)
     val tileData = TileMapData(
         width = layer.cWid,
         height = layer.cHei,
@@ -138,7 +139,7 @@ class LDTKLayerView(
                 tileData.push(x, y, Tile(tile = tileId, offsetX = dx, offsetY = dy, flipX = flipX, flipY = flipY, rotate = false))
             }
             if (tilesetExt.tileset != null) {
-                 tileMap(tileData, smoothing = false)
+                tileMap(tileData, smoothing = false)
                     .alpha(layerDef.displayOpacity)
                     .also { if (!world.tilesetIsExtruded) it.filters(IdentityFilter.Nearest) }
                     .also { it.overdrawTiles = 1 }
