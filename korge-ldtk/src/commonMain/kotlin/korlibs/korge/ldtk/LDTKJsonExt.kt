@@ -8,6 +8,7 @@ import korlibs.math.geom.PointInt
 import kotlinx.serialization.json.*
 
 val EntityInstance.gridPos: PointInt get() = PointInt(grid[0], grid[1])
+val EntityInstance.pixelPos: PointInt get() = PointInt(px[0], px[1])
 val EntityInstance.pivotAnchor: Anchor get() = Anchor(pivot[0], pivot[1])
 val EntityInstance.fieldInstancesByName: Map<String, FieldInstance> by Extra.PropertyThis { fieldInstances.associateBy { it.identifier } }
 val EntityDefinition.fieldDefsByName by Extra.PropertyThis { this.fieldDefs.associateBy { it.identifier } }
